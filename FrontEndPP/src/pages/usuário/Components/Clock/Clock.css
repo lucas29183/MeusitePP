@@ -1,0 +1,19 @@
+.clock-container {
+  display: flex;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+}
+
+.time {
+  margin: 0 auto;
+  padding: 0px;
+  font-size: 5em;
+  font-weight: 600;
+  text-overflow: clip;
+  font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
+  text-shadow: 0 0 4px #80b5c4;
+  color:black;
+}
+
