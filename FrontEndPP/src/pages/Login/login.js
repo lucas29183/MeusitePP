@@ -60,16 +60,21 @@ function Login() {
         }
       })
         .then(response => {
-          alert(response.data.message)
-          saveUserinfoLocalStorage(response.data.token)
+            console.log(response.data)
+            if(response.data.success) {
+                localStorage.setItem('nome', response.data.data[0].name)
+                localStorage.setItem('token', response.data.data[0].token)
+            }
+          
+            
+          //saveUserinfoLocalStorage(response.data.token)
           // recuperando informações depois que usario logou
           const token = response.data.data[0].token;
           const email = response.data.data[0].email;
           const id = response.data.data[0].id;
           const nome = response.data.data[0].name
-  
           //função para salvar informalções depois que o usuario logu
-          saveUserinfoLocalStorage(email, token, id, nome)
+          //saveUserinfoLocalStorage(email, token, id, nome)
           navigate('/Home')
         })
         .catch(error => alert(error))

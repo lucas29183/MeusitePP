@@ -62,14 +62,15 @@ const Alarm = ({ index, alarm }) => {
     return (
         <div className="alarm-container">
                 
-                <ul className='Lista-descrição'>
+                {/* <ul className='Lista-descrição'>
                     <h1>15 caracter max</h1>
                     <li>ListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaLista</li>
                     <li>85 caracteres maximo pra querer quebrar linha</li>
                     <li>85 caracteres maximo pra querer quebrar linha</li>
                     <li>85 caracteres maximo pra querer quebrar linha</li>
-                </ul>
+                </ul> */}
 
+                
 
 
 

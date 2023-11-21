@@ -155,7 +155,7 @@ const ImagemHomemComputador = styled.img`
   float: left;
   margin-top: 8%;
   margin-left: 9%;
-  width: 80%;
+  width: 70%;
   margin-bottom: 5%;
 `
 const Paragrafo2 = styled.p`
@@ -178,7 +178,7 @@ const ImagemPessoasReunião = styled.img`
   float: right;
   margin-top: 110px;
   margin-left:5%;
-  width: 90%;
+  width: 80%;
   margin-bottom: 150px;
 `
 const Titulo3 = styled.h1`
@@ -214,7 +214,7 @@ const ImagemMapaMundi = styled.img`
   float: left;
   margin-top: 110px;
   margin-left: 9%;
-  width: 60%;
+  width: 50%;
   margin-bottom: 150px;
 `
 const Titulo4 = styled.h1`

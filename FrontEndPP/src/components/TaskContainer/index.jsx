@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import Task from '../Task'
 import './TaskContainer.css'
+import styled from "styled-components";
 
-const TaskContainer = ({ tasks, setTasks, dark }) => {
+
+const TaskContainer = ({ tasks, setTasks }) => {
 
     const [todo, setTodo] = useState({ completed: false, title: "", description: "" })
 
@@ -25,28 +27,29 @@ const TaskContainer = ({ tasks, setTasks, dark }) => {
         <div className='tasks-container'>
             <form className='input-form' action='handleSubmit' onSubmit={handleSubmit}>
                
-               
+                <Textocima>Coloque o título da atividade</Textocima>
                 <input className='task-input task-input-title'
                     name='title' type="text" placeholder='Enter Title'
                     onChange={handleChange} value={todo.title} />
                
-               
+
+               <Textocima>Coloque a descrição da atividade</Textocima>
                 <input className='task-input task-input-desc'
                     name='description' type="text" placeholder='Enter Description'
                     onChange={handleChange} value={todo.description} />
 
 
-                <button className={`task-btn ${dark ? 'darkMode-add-btn' : 'lightMode-add-btn'} add-btn`}
+                <button className={`task-btn add-btn`}
                     type='submit'>Add</button>
             </form >
 
-            <div className={`box-tasks-container`}>
-                {tasks?.map((task, i) => {
-                    return <Task task={task} tasks={tasks} setTasks={setTasks} index={i} dark={dark} key={i} />
-                })}
-            </div>
+
         </div>
     )
 }
 
-export default TaskContainer
+export default TaskContainer;
+
+const Textocima = styled.p`
+    margin-bottom:5px;
+`

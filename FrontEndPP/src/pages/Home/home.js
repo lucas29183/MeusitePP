@@ -3,66 +3,82 @@ import styled from "styled-components";
 import moment from 'moment';
 import Modal from "../../components/modal.js";
 import Modal2 from "../../components/modal2.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Clock from "../usuário/Components/Clock"
 import Alarm from "../usuário/Components/Alarm";
 import { useSelector } from 'react-redux'
+import TaskContainer from "../../components/TaskContainer/index.jsx";
+import Task from "../../components/Task/index.jsx";
+
+
+
 function Home() {
-  
-    
-        // const dispatch = useDispatch()
-        // const [time, setTime] = useState('')
-      
-        const alarms = useSelector(state => state.alarmReducer.alarms)
-    
-    
+
+
+    const alarms = useSelector(state => state.alarmReducer.alarms)
+
+
+    const [tasks, setTasks] = useState([])
+
+    // useEffect(() => {
+    //     let myTodo = localStorage.getItem('myTodoTasks');
+    //     if (myTodo) {
+    //         setTasks(JSON.parse(myTodo))
+    //     }
+    // }, [])
+
 
 
     const dataAtual = moment().format('DD/MM/YYYY')
-    console.log(dataAtual)    
+    console.log(dataAtual)
 
-        const[openModalEditor, setOpenModal] = useState(false)
-        const[openModalEditor2, setOpenModal2] = useState(false)
+    const [openModalEditor, setOpenModal] = useState(false)
+    const [openModalEditor2, setOpenModal2] = useState(false)
 
 
     return (
-    <>
-        <Navbar/>
-        <BodyHome>    
-            
-
-            <DivPrincipal>
-                <Clock />
-                <DataHoje>{dataAtual}</DataHoje>
-            </DivPrincipal>
+        <>
+            <Navbar />
+            <BodyHome>
 
 
+                <DivPrincipal>
+                    <Clock />
+                    <DataHoje>{dataAtual}</DataHoje>
+                </DivPrincipal>
 
-            <div className="alarm-list-container">
-            {alarms?.map((alarm, i) => <Alarm key={i} index={i} alarm={alarm} />)}
-            </div>
-            
+
+                {/* <TaskContainer tasks={tasks} setTasks={setTasks} />
+                <div className={`box-tasks-container`}>
+                    {tasks?.map((task, i) => {
+                        return <Task task={task} tasks={tasks} setTasks={setTasks} index={i} key={i} />
+                    })}
+                </div> */}
 
 
-            <BotãoCriarTarefa onClick={() => setOpenModal2(true)}>
-                <TextoCriarTarefa>
-                    Criar Tarefa
-                </TextoCriarTarefa>
-            </BotãoCriarTarefa>
+                <div className="alarm-list-container">
+                    {alarms?.map((alarm, i) => <Alarm key={i} index={i} alarm={alarm} />)}
+                </div>
+
+                <BotãoCriarTarefa onClick={() => setOpenModal2(true)}>
+                    <TextoCriarTarefa>
+                        Criar Tarefa
+                    </TextoCriarTarefa>
+                </BotãoCriarTarefa>
 
 
                 <Modal isOpen={openModalEditor} setModalOpen={() => setOpenModal(!openModalEditor)} />
-                <Modal2 isOpen2={openModalEditor2} setModalOpen2={() => setOpenModal2(!openModalEditor2)}/>
-                
-                
+                <Modal2 isOpen2={openModalEditor2} setModalOpen2={() => setOpenModal2(!openModalEditor2)} />
 
 
 
-                
-        </BodyHome>
 
 
-    </>
+
+            </BodyHome>
+
+
+        </>
 
     )
 }
@@ -91,6 +107,7 @@ const DataHoje = styled.div`
     justify-content: center;
     font-size: 40px;
     text-shadow: 0 0 4px #80b5c4;
+    margin-top: -30px;
 `
 
 

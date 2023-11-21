@@ -13,6 +13,7 @@
     font-family: 'BebasNeueRegular', Arial, Helvetica, sans-serif;
     color: #232d31;
     margin-top: 50px;
+    margin-left: 10vw;
 }
 
 li{
@@ -23,8 +24,9 @@ li{
     position: absolute;
     top: 20%;
     left: 0;
-    max-width: 40vw;
-
+    width: 50%;
+    font-size: 100%;
+    
 }
 
 .alarm-left-time{

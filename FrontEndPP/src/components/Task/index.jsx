@@ -2,7 +2,7 @@ import React from 'react'
 import './Task.css'
 import { MdCancel, MdDoneAll } from 'react-icons/md'
 
-const Task = ({ task, tasks, setTasks, index, dark }) => {
+const Task = ({ task, tasks, setTasks, index }) => {
 
     const handleComplete = (e) => {
         e.preventDefault()
@@ -23,14 +23,22 @@ const Task = ({ task, tasks, setTasks, index, dark }) => {
     }
 
     return (
-        <div className={`${dark ? 'darkMode-task-container' : "lightMode-task-container"} box-task-container`}>
-            <div className={`${dark ? 'darkMode-box-task' : "lightMode-box-task"} box-task`}>
-                <div className={`${dark ? 'darkMode-task-title' : 'lightMode-task-title'} box-task-title`} style={{ textDecoration: task.completed ? "line-through" : "" }}>{task.title}</div>
-                <div className={`${dark ? 'darkMode-task-description' : "lightMode-task-description"} box-task-description`} style={{ textDecoration: task.completed ? "line-through" : "" }}>{task.description}</div>
+        <div className={`box-task-container`}>
+            <div className={`box-task`}>
+
+
+                <div className={`box-task-title`} style={{ textDecoration: task.completed ? "line-through" : "" }}>{task.title}</div>
+
+
+
+                <div className={` box-task-description`} style={{ textDecoration: task.completed ? "line-through" : "" }}>{task.description}</div>
             </div>
-            <div className={`${dark ? 'darkMode' : "lightMode"} box-task-action`}>
-                <button className={`${dark ? 'darkMode-task-completed' : "lightMode-task-completed"} box-task-completed ${dark ? 'darkMode-task-btn' : "lightMode-task-btn"} box-task-btn`} onClick={handleComplete}><MdDoneAll size={20} /></button>
-                <button className={`${dark ? 'darkMode-task-remove' : "lightMode-task-remove"} box-task-remove ${dark ? 'darkMode-task-btn' : "lightMode-task-btn"} box-task-btn`} onClick={(e) => handleRemove(e)}><MdCancel size={20} /></button>
+
+
+
+            <div className={`box-task-action`}>
+                <button className={`box-task-completedbox-task-btn`} onClick={handleComplete}><MdDoneAll size={20} /></button>
+                <button className={` box-task-removebox-task-btn`} onClick={(e) => handleRemove(e)}><MdCancel size={20} /></button>
             </div>
         </div>)
 }

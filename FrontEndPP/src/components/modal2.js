@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from "styled-components";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import useStoreLocal from '../pages/usuário/Hooks/useStore'
 import { setAlarm } from '../pages/usuário/redux/actions/AlarmAction'
-
+import TaskContainer from './TaskContainer';
 
 
 
@@ -35,7 +35,7 @@ export default function Modal2({ isOpen2, setModalOpen2 }) {
                 useStoreLocal([...alarms, { time, bgColor }])
             }
             else {
-                alert("Alarm is already scheduled")
+                alert("Este horário ja foi marcado!!")
                 console.log("Pego");
             }
         }
@@ -46,6 +46,26 @@ export default function Modal2({ isOpen2, setModalOpen2 }) {
         setTime(e.target.value)
     }
 
+    useEffect(() => {
+        let myTodo = localStorage.getItem('myTodoTasks');
+        if (myTodo) {
+            setTasks(JSON.parse(myTodo))
+        }
+    }, [])
+
+
+
+
+    const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+        let myTodo = localStorage.getItem('myTodoTasks');
+        if (myTodo) {
+            setTasks(JSON.parse(myTodo))
+        }
+    }, [])
+
+
 
     if (isOpen2) {
 
@@ -54,14 +74,15 @@ export default function Modal2({ isOpen2, setModalOpen2 }) {
             <>
                 <ModalFundo>
                     <AreaModal >
-                        <input type="time" className='add-alarm-input' value={time} onChange={handleChange} placeholder="Add a new alarm" />
+                        {/* <TaskContainer tasks={tasks} setTasks={setTasks} /> */}
 
-
-                        <div className="alarm-add-btn-container">
-                            <button className='add-alarm-button' onClick={HandleAddAlarm}>Set Alarm</button>
-                        </div>
-
+                        <DefinirHorario type="time" value={time} onChange={handleChange} placeholder="Add a new alarm" />
+                        <Botãoalarm onClick={HandleAddAlarm}>Set Alarm</Botãoalarm>
+                      
+                      
                         <BotãoFechar onClick={setModalOpen2}>Fechar</BotãoFechar>
+          
+            
                     </AreaModal>
                 </ModalFundo>
 
@@ -73,6 +94,21 @@ export default function Modal2({ isOpen2, setModalOpen2 }) {
 }
 
 
+
+const DefinirHorario = styled.input`
+    position:absolute;
+    margin-top: 0px;
+    width: 200px;
+    left: 10%;
+`
+
+const Botãoalarm = styled.button`
+    position: absolute;
+    margin-top: 50px;
+    width:200px;
+    left: 10%;
+`
+
 const BotãoFechar = styled.button`
     position:fixed;
     background-color:gray;
@@ -81,9 +117,9 @@ const BotãoFechar = styled.button`
     top:0;
     width:5vw;
     height:30px;
-    margin-top:250px;
+    margin-top:320px;
     left:0;
-    margin-left:50%;
+    margin-left:75%;
 `
 
 
@@ -91,7 +127,7 @@ const AreaModal = styled.div`
     position:fixed;
     top:50%;
     left:50%;
-    padding: 150px;
+    padding: 200px;
     transform:translate(-50%, -50%);
     background-color: white;
     border-radius: 20px;

@@ -2,10 +2,11 @@
     padding: 12px 25px;
     box-shadow: none;
     font-size: 16px;
-    border: none;
-    margin: 0 4px;
+    /* border: none; */
+    margin-top: 120px;
     border-radius: 3px;
     cursor: pointer;
+    width: 350px;
 }
 
 .lightMode-add-btn {
@@ -23,20 +24,24 @@
 
 .input-form {
     width: 850px;
-    max-width: 85vw;
+    max-width: 85vw;    
     margin: 30px auto;
     outline: none;
     display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:0;
+    left: 3%;
 }
 
 .task-input {
     padding: 10px 20px;
     outline: none;
-    border: none;
+    /* border: none; */
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     font-size: 16px;
     border-radius: 5px;
-    width: 70%;
-    margin: 0 2px;
+    width: 350px;
 }
 
 .task-done-btn {
