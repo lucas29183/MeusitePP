@@ -1,62 +1,79 @@
 import React from 'react'
 import styled from "styled-components";
-import { useState, useEffect } from 'react';
-import TaskContainer from './TaskContainer'
-import AlarmContainer from '../pages/usuário/Components/AlarmContainer';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import useStoreLocal from '../pages/usuário/Hooks/useStore'
+import { setAlarm } from '../pages/usuário/redux/actions/AlarmAction'
 
 
 
 
-export default function Modal2({isOpen2, setModalOpen2}) {
+export default function Modal2({ isOpen2, setModalOpen2 }) {
 
-    const [tasks, setTasks] = useState([])
+    const dispatch = useDispatch()
+    const [time, setTime] = useState('')
 
-    useEffect(() => {
-    let myTodo = localStorage.getItem('myTodoTasks');
-    if (myTodo) {
-        setTasks(JSON.parse(myTodo))
+    const alarms = useSelector(state => state.alarmReducer.alarms)
+    // const activeAlarms = useSelector(state => state.alarmReducer.activeAlarm)
+
+    const generateLightColorHex = () => {
+        let color = "#";
+        do {
+            for (let i = 0; i < 3; i++)
+                color += ("0" + Math.floor(((1 + Math.random()) * Math.pow(16, 2)) / 2).toString(16)).slice(-2);
+            // eslint-disable-next-line no-loop-func
+        } while (alarms.filter(alarm => alarm.bgColor === color).length > 0);
+        return color;
     }
-    }, [])
 
-
-        const [todo, setTodo] = useState({ completed: false, title: "", description: "" })
-    
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            if (todo.title) {
-                let newTask = { ...todo }
-                let newTasks = [...tasks, newTask]
-                setTasks(newTasks)
-                setTodo({ title: '', description: '', completed: false })
-                localStorage.setItem("myTodoTasks", JSON.stringify(newTasks));
+    const HandleAddAlarm = () => {
+        if (time) {
+            if (alarms.filter(alarm => alarm.time === time).length === 0) {
+                const bgColor = generateLightColorHex();
+                dispatch(setAlarm({ time, bgColor }))
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                useStoreLocal([...alarms, { time, bgColor }])
             }
-        }    
-    
-    
-    if(isOpen2){
+            else {
+                alert("Alarm is already scheduled")
+                console.log("Pego");
+            }
+        }
+        setTime('')
+    }
+
+    const handleChange = (e) => {
+        setTime(e.target.value)
+    }
 
 
-    return(
+    if (isOpen2) {
 
-        <>
-       <ModalFundo>
-            <AreaModal onSubmit={handleSubmit}> 
-            <AlarmContainer />
-            {/* <TaskContainer tasks={tasks} setTasks={setTasks} />
-   */}
-           </AreaModal>
-            <BotãoFechar onClick={setModalOpen2}>Fechar</BotãoFechar    > 
-       </ModalFundo>
+        return (
 
-       </>
-       )
-   }
-    
+            <>
+                <ModalFundo>
+                    <AreaModal >
+                        <input type="time" className='add-alarm-input' value={time} onChange={handleChange} placeholder="Add a new alarm" />
+
+
+                        <div className="alarm-add-btn-container">
+                            <button className='add-alarm-button' onClick={HandleAddAlarm}>Set Alarm</button>
+                        </div>
+
+                        <BotãoFechar onClick={setModalOpen2}>Fechar</BotãoFechar>
+                    </AreaModal>
+                </ModalFundo>
+
+            </>
+        )
+    }
+
     return null
-   }
+}
 
 
-   const BotãoFechar= styled.button`
+const BotãoFechar = styled.button`
     position:fixed;
     background-color:gray;
     border:none;
@@ -64,10 +81,10 @@ export default function Modal2({isOpen2, setModalOpen2}) {
     top:0;
     width:5vw;
     height:30px;
-    margin-top:395px;
+    margin-top:250px;
     left:0;
     margin-left:50%;
-   `
+`
 
 
 const AreaModal = styled.div`
@@ -84,12 +101,12 @@ const AreaModal = styled.div`
 
 
 const ModalFundo = styled.div`
-position: fixed;
-top: 0;
-bottom: 0;
-left: 0;
-right: 0;
-background-color: rgb( 0, 0, 0, 0.7);
-z-index: 1000;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgb( 0, 0, 0, 0.7);
+    z-index: 1000;
 `
 

@@ -3,7 +3,6 @@ import { deleteAlarm, setActiveAlarm, clearActiveAlarm } from '../../redux/actio
 import { AiFillDelete, AiFillEdit } from 'react-icons/ai'
 import { MdOutlineDownloadDone } from 'react-icons/md'
 import moment from 'moment'
-import '../../../../img/alarm.mp3'
 import { useDispatch, useSelector } from 'react-redux'
 import { updateAlarm } from '../../redux/actions/AlarmAction'
 import './Alarm.css'
@@ -46,7 +45,8 @@ const Alarm = ({ index, alarm }) => {
         const diffTime = moment.duration(endTime.diff(startTime));
 
         if (diffTime._milliseconds === 0) {
-            alarmRing.play();
+            alert("Chegou a Hora")
+            // alarmRing.play();
             dispatch(setActiveAlarm(alarm))
             setTimeout(() => {
                 alarmRing.pause()
@@ -60,23 +60,34 @@ const Alarm = ({ index, alarm }) => {
     }
 
     return (
-            <div className="alarm-container" style={{ backgroundColor: alarm.bgColor }}>
-                <div className="alarm-time-container">
-                    {isEdit ?
-                        <input className="alarm-time-input" onChange={handleChange} type="time" value={time} />
-                        : <div className='alarm-time'>{moment(alarm.time, 'HH:mm').format('hh:mm A')}</div>
-                    }
-            </div>
+        <div className="alarm-container">
+                
+                <ul className='Lista-descrição'>
+                    <h1>15 caracter max</h1>
+                    <li>ListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaListaLista</li>
+                    <li>85 caracteres maximo pra querer quebrar linha</li>
+                    <li>85 caracteres maximo pra querer quebrar linha</li>
+                    <li>85 caracteres maximo pra querer quebrar linha</li>
+                </ul>
+
+
+
+
+                {isEdit ?
+                    <input className="alarm-time-input" onChange={handleChange} type="time" value={time} />
+                    : <div className='alarm-time'>{moment(alarm.time, 'HH:mm').format('hh:mm A')}</div>
+                }
+        
 
 
             <p className='alarm-left-time'>{TimeDeff()}</p>
-            
-                    {/* Botão editar alarme */}
+
+            {/* Botão desativar alarme */}
             <div className="alarm-actions">
                 <button className='alarm-action-btn alarm-remove-btn' type='button' onClick={HandleRemove}><AiFillDelete size={25} />
                 </button>
 
-                    {/* Botão desativar alarme */}
+                {/* Botão editar alarme */}
                 {isEdit ? <button className='alarm-action-btn alarm-edit-btn' type='button' onClick={HandleEdit}><MdOutlineDownloadDone size={25} /></button>
                     : <button className='alarm-action-btn alarm-edit-btn' type='button' onClick={() => setIsEdit(true)}><AiFillEdit size={25} /></button>
                 }

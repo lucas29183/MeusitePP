@@ -20,7 +20,7 @@ const Clock = () => {
 
     return (
         <div className="clock-container">
-            <p className="time" style={{color: activeAlarms? "#232d31":"#fff"}}>{moment(time).format('hh:mm:ss A')}</p>
+            <p className="time" style={{color: activeAlarms? "#232d31":"#000000"}}>{moment(time).format('hh:mm:ss A')}</p>
         </div>
     )
 }

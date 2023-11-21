@@ -18,7 +18,7 @@
 }
 
 .add-btn:hover {
-    background-color: aqua;
+    background-color: #02b611;
 }
 
 .input-form {
@@ -44,7 +44,7 @@
 }
 
 .task-done-btn:hover {
-    background: aqua;
+    background: #01bd7e;
 }
 
 .task-remove-btn {

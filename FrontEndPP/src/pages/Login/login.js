@@ -3,7 +3,6 @@ import Header from "../../components/header";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { api } from "../../services/api";
 import axios from "axios";
 
 

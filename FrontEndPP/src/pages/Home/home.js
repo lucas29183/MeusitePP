@@ -3,15 +3,15 @@ import styled from "styled-components";
 import moment from 'moment';
 import Modal from "../../components/modal.js";
 import Modal2 from "../../components/modal2.js";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Clock from "../usuário/Components/Clock"
 import Alarm from "../usuário/Components/Alarm";
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 function Home() {
   
     
-        const dispatch = useDispatch()
-        const [time, setTime] = useState('')
+        // const dispatch = useDispatch()
+        // const [time, setTime] = useState('')
       
         const alarms = useSelector(state => state.alarmReducer.alarms)
     
@@ -35,6 +35,8 @@ function Home() {
                 <Clock />
                 <DataHoje>{dataAtual}</DataHoje>
             </DivPrincipal>
+
+
 
             <div className="alarm-list-container">
             {alarms?.map((alarm, i) => <Alarm key={i} index={i} alarm={alarm} />)}
@@ -88,6 +90,7 @@ const DataHoje = styled.div`
     display:flex;
     justify-content: center;
     font-size: 40px;
+    text-shadow: 0 0 4px #80b5c4;
 `
 
 
@@ -96,20 +99,20 @@ const DivPrincipal = styled.main`
     position:relative;
     justify-content: center;
     background-color: #E4F4F4;
-    margin-top: 30px;
     width: 70vw;
     height: 30vh;
+    margin-bottom:20px;
     border-radius: 50px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     stroke-width: 1px;
     stroke: #000;
     `
 
-const TituloPrincipal = styled.h1`
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    position:absolute;
-    margin-top:10px;
-`
+// const TituloPrincipal = styled.h1`
+//     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+//     position:absolute;
+//     margin-top:10px;
+// `
 
 const BotãoCriarTarefa = styled.button`
     display:flex;
@@ -140,31 +143,31 @@ const TextoCriarTarefa = styled.button`
 `
 
 // const DivFunção = styled.div`
-//     background-color:gray;
-//     display:flex;
-//     position:relative;
-//     justify-content: center;
-//     margin-left:10vw;
-//     margin-top: 50px;
-//     width: 50vw;
-//     height: 30vh;
-//     border-radius: 50px;
-//     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-//     stroke-width: 1px;
-//     stroke: #000;
+    // background-color:gray;
+    // display:flex;
+    // position:relative;
+    // justify-content: center;
+    // margin-left:10vw;
+    // margin-top: 50px;
+    // width: 50vw;
+    // height: 30vh;
+    // border-radius: 50px;
+    // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    // stroke-width: 1px;
+    // stroke: #000;
 // `
 
 
-const BotãoLapis = styled.button`
-    object-fit: cover;
-    position: relative;
-    background:none;
-    border:none;
-    width: 50px;
-    height: 50px;
-    margin-top:10px;
-    margin-left: 60vw;
-`
+// const BotãoLapis = styled.button`
+//     object-fit: cover;
+//     position: relative;
+//     background:none;
+//     border:none;
+//     width: 50px;
+//     height: 50px;
+//     margin-top:10px;
+//     margin-left: 60vw;
+// `
 
 // const BotãoPonto = styled.button`
 //     object-fit: cover;
@@ -184,8 +187,8 @@ const BotãoLapis = styled.button`
 //     height: 40px;
 // `
 
-const LapisLogo = styled.img`
-    object-fit: cover;
-    width: 50px;
-    height: 50px;
-`
+// const LapisLogo = styled.img`
+//     object-fit: cover;
+//     width: 50px;
+//     height: 50px;
+// `

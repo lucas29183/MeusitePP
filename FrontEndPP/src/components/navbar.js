@@ -7,7 +7,7 @@ import imgUsuario from '../img/usuario.png'
 const Sidebar = () => {
     return (
       <div style={{ display: 'flex', position: 'fixed', height: '100vh',  overflow: 'scroll initial', alignItems: 'center',}}>
-        <CDBSidebar textColor="#fff" backgroundColor="#333" >
+        <CDBSidebar textColor="#fff" backgroundColor="#03313C" >
           <CDBSidebarHeader style={{ textAlign: 'center' }} prefix={<i className="fa fa-bars fa-large"></i>} > 
             <Usuarioimagem src={imgUsuario} style={{ textAlign: 'center' }}/>
             <p className="text-decoration-none" style={{ color: 'white' }}>

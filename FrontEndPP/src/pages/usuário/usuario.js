@@ -1,30 +1,33 @@
-import Navbar from "../../components/navbar.js";
+
 // import styled from "styled-components"; 
 import '../../App.css';
-import { useEffect } from 'react';
-import Clock from './Components/Clock';
-import AlarmContainer from './Components/AlarmContainer';
-import { useDispatch, useSelector } from 'react-redux';
-import { setAlarmsFromStorage } from './redux/actions/AlarmAction';
+import { useState, useEffect } from 'react';
 
+import TaskContainer from "../../components/TaskContainer/index.jsx";
 
 
 function Usuario() {
-  const activeAlarms = useSelector(state => state.alarmReducer.activeAlarm)
-  const dispatch = useDispatch()
 
+  const [tasks, setTasks] = useState([])
+  
   useEffect(() => {
-    const myAlarms = localStorage.getItem('myAlarms');
-    if (myAlarms) {
-      dispatch(setAlarmsFromStorage(JSON.parse(myAlarms)))
+    let myTodo = localStorage.getItem('myTodoTasks');
+    if (myTodo) {
+        setTasks(JSON.parse(myTodo))
     }
-  }, []);
+}, [])
+
+
 
   return (
-    <div className="App" style={{ backgroundColor: activeAlarms ? activeAlarms.bgColor : "#000" }}>
-      <Clock />
-      <AlarmContainer />
-    </div>
+    <>
+
+
+
+        <TaskContainer tasks={tasks} setTasks={setTasks}/>
+
+
+    </>
   );
 
 }
