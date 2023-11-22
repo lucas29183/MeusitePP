@@ -20,16 +20,16 @@ const Sidebar = () => {
           <CDBSidebarContent className="sidebar-content">
             <CDBSidebarMenu>
               <NavLink exact to="/Home" activeClassName="activeClicked">
-                <CDBSidebarMenuItem className='h4'>Home</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem className='h1 mb-4'>Home</CDBSidebarMenuItem>
               </NavLink>
               <NavLink exact to="/calendario" activeClassName="activeClicked">
-                <CDBSidebarMenuItem className='h4'>Calendario</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem className='h1 mb-4'>Calendario</CDBSidebarMenuItem>
               </NavLink>
               <NavLink exact to="/Usuario" activeClassName="activeClicked">
-                <CDBSidebarMenuItem className='h4'>Usuário</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem className='h1 mb-4'>Usuário</CDBSidebarMenuItem>
               </NavLink>
               <NavLink exact to="/Login"  activeClassName="activeClicked">
-                <CDBSidebarMenuItem className='h4'>Sair</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem className='h1 mb-4'>Sair</CDBSidebarMenuItem>
               </NavLink>
             </CDBSidebarMenu>
           </CDBSidebarContent>
@@ -52,3 +52,4 @@ const Sidebar = () => {
   text-align: center;
   justify-content: center;
 `
+

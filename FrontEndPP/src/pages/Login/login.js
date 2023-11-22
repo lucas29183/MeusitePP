@@ -11,137 +11,113 @@ function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    // const handleSubmit = async (e) => {
-    //     e.preventDefault();
-
-    //     console.log( email, password)
-
-    //     const data = {
-    //         email,
-    //         password
-    //     };
-
-    //     const response = await api.post('http://localhost:3008/api/logar', data);
-        
-    //     if (response.data.success && response.data.data.status === 'A') {
-	// 		navigate({toHome});
-
-    //         localStorage.setItem('@auth:user', response.data.data.id);
-    //         localStorage.setItem('@auth:token', response.data.data.token);
-    //     } else {
-    //         alert("Não foi possível entrar na conta");
-    //     }
-    // };
-
     const navigate = useNavigate()
 
 
-    const saveUserinfoLocalStorage = (email, token, id, nome) => {
-      localStorage.setItem('token', token)
-      localStorage.setItem('email', email)  
-      localStorage.setItem('id', id)
-      localStorage.setItem('nome', nome)
-  
-      console.log(nome)
-    }
-  
+    // const saveUserinfoLocalStorage = (email, token, id, nome) => {
+    //   localStorage.setItem('token', token)
+    //   localStorage.setItem('email', email)  
+    //   localStorage.setItem('id', id)
+    //   localStorage.setItem('nome', nome)
+
+    //   console.log(nome)
+    // }
+
     const handleSubmit = async (e) => {
-      e.preventDefault()
-  
-  
-      const credencials = { email, password }
-  
-      axios.post('http://localhost:3008/api/login', credencials, {
-  
-        headers: {
-          'Content-Type': 'application/json',
-  
-        }
-      })
-        .then(response => {
-            console.log(response.data)
-            if(response.data.success) {
-                localStorage.setItem('nome', response.data.data[0].name)
-                localStorage.setItem('token', response.data.data[0].token)
+        e.preventDefault()
+
+
+        const credencials = { email, password }
+
+        axios.post('http://localhost:3008/api/login', credencials, {
+
+            headers: {
+                'Content-Type': 'application/json',
+
             }
-          
-            
-          //saveUserinfoLocalStorage(response.data.token)
-          // recuperando informações depois que usario logou
-          const token = response.data.data[0].token;
-          const email = response.data.data[0].email;
-          const id = response.data.data[0].id;
-          const nome = response.data.data[0].name
-          //função para salvar informalções depois que o usuario logu
-          //saveUserinfoLocalStorage(email, token, id, nome)
-          navigate('/Home')
         })
-        .catch(error => alert(error))
+            .then(response => {
+                console.log(response.data)
+                if (response.data.success) {
+                    localStorage.setItem('nome', response.data.data[0].name)
+                    localStorage.setItem('token', response.data.data[0].token)
+                    localStorage.setItem('email', response.data.data[0].email)
+                }
+                //saveUserinfoLocalStorage(response.data.token)
+                // recuperando informações depois que usario logou
+                const token = response.data.data[0].token;
+                const email = response.data.data[0].email;
+                const id = response.data.data[0].id;
+                const nome = response.data.data[0].name
+                //função para salvar informalções depois que o usuario logu
+                //saveUserinfoLocalStorage(email, token, id, nome)
+                navigate('/Home')
+            })
+            .catch(error => alert(error))
     }
 
-const toCadastro = () =>{
-    navigate("/cadastro")
-}
+    const toCadastro = () => {
+        navigate("/cadastro")
+    }
 
 
 
-  return (
-    <>
-        <Header/>
-        <DivPai>  
-            
-            <Ladologin>
-                <TextoLadoLogin>Clique aqui para cadastrar-se</TextoLadoLogin>
-                <Link to="/cadastro"><BotãoLogar onClick={toCadastro}>Cadastrar</BotãoLogar></Link>
-            </Ladologin>
+    return (
+        <>
+            <Header />
+            <DivPai>
+
+                <Ladologin>
+                    <TextoLadoLogin>Clique aqui para cadastrar-se</TextoLadoLogin>
+                    <Link to="/cadastro"><BotãoLogar onClick={toCadastro}>Cadastrar</BotãoLogar></Link>
+                </Ladologin>
 
 
 
 
-            <LadoCadastro>
-                <ContainerFaçaCadastro>
-                    <TextoFaçaCadastro>Faça seu login</TextoFaçaCadastro>
-                    <SubtextoCadastro>Entre na sua conta para continuar seu <br/>gerenciamento pessoal</SubtextoCadastro>
-                
-                    <Formulariologin>
-                        <TextoLabel>Email:
-                            <br/>
-                            <CaixaLabel
-                            type="email"
-                            name="email"
-                            placeholder="email"
-                            value={email}
-                            required
-                            onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </TextoLabel>
-                            <br/>
+                <LadoCadastro>
+                    <ContainerFaçaCadastro>
+                        <TextoFaçaCadastro>Faça seu login</TextoFaçaCadastro>
+                        <SubtextoCadastro>Entre na sua conta para continuar seu <br />gerenciamento pessoal</SubtextoCadastro>
+
+                        <Formulariologin>
+                            <TextoLabel>Email:
+                                <br />
+                                <CaixaLabel
+                                    type="email"
+                                    name="email"
+                                    placeholder="email"
+                                    value={email}
+                                    required
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </TextoLabel>
+                            <br />
 
 
 
-                        <TextoLabel>Senha:
-                            <br/>
-                            <CaixaLabel
-                            type="password"
-                            name="password"
-                            placeholder="senha"
-                            value={password}
-                            required
-                            onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </TextoLabel>
-                        <br/>
-                    </Formulariologin>
+                            <TextoLabel>Senha:
+                                <br />
+                                <CaixaLabel
+                                    type="password"
+                                    name="password"
+                                    placeholder="senha"
+                                    value={password}
+                                    required
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </TextoLabel>
+                            <br />
+                        </Formulariologin>
 
-                    <BotãoHome onClick={handleSubmit}>Logar</BotãoHome>
+                        <BotãoHome onClick={handleSubmit}>Logar</BotãoHome>
 
-                </ContainerFaçaCadastro>
-            </LadoCadastro>
-        </DivPai>
+                    </ContainerFaçaCadastro>
+                </LadoCadastro>
+            </DivPai>
 
-    </>
-  );
+        </>
+    );
 }
 
 export default Login;
@@ -206,7 +182,7 @@ const DivPai = styled.body`
 `
 
 
-    
+
 const Ladologin = styled.section`
     /* display: grid; */
     background-color: rgb(5,65,78,1);

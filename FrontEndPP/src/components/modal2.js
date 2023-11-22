@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from "styled-components";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import useStoreLocal from '../pages/usuário/Hooks/useStore'
 import { setAlarm } from '../pages/usuário/redux/actions/AlarmAction'
-import TaskContainer from './TaskContainer';
 
 
 
@@ -36,7 +35,7 @@ export default function Modal2({ isOpen2, setModalOpen2 }) {
             }
             else {
                 alert("Este horário ja foi marcado!!")
-                console.log("Pego");
+                console.log("horário ja marcado");
             }
         }
         setTime('')
@@ -46,24 +45,8 @@ export default function Modal2({ isOpen2, setModalOpen2 }) {
         setTime(e.target.value)
     }
 
-    useEffect(() => {
-        let myTodo = localStorage.getItem('myTodoTasks');
-        if (myTodo) {
-            setTasks(JSON.parse(myTodo))
-        }
-    }, [])
+  
 
-
-
-
-    const [tasks, setTasks] = useState([])
-
-    useEffect(() => {
-        let myTodo = localStorage.getItem('myTodoTasks');
-        if (myTodo) {
-            setTasks(JSON.parse(myTodo))
-        }
-    }, [])
 
 
 
@@ -74,15 +57,11 @@ export default function Modal2({ isOpen2, setModalOpen2 }) {
             <>
                 <ModalFundo>
                     <AreaModal >
-                        {/* <TaskContainer tasks={tasks} setTasks={setTasks} /> */}
-
                         <DefinirHorario type="time" value={time} onChange={handleChange} placeholder="Add a new alarm" />
                         <Botãoalarm onClick={HandleAddAlarm}>Set Alarm</Botãoalarm>
                       
                       
                         <BotãoFechar onClick={setModalOpen2}>Fechar</BotãoFechar>
-          
-            
                     </AreaModal>
                 </ModalFundo>
 

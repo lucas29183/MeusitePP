@@ -1,39 +1,21 @@
 import Navbar from "../../components/navbar.js";
 import styled from "styled-components";
 import moment from 'moment';
-import Modal from "../../components/modal.js";
 import Modal2 from "../../components/modal2.js";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Clock from "../usuário/Components/Clock"
-import Alarm from "../usuário/Components/Alarm";
-import { useSelector } from 'react-redux'
-import TaskContainer from "../../components/TaskContainer/index.jsx";
-import Task from "../../components/Task/index.jsx";
+import AlertaFinale from "../../components/AlertaFinale.js";
 
 
 
 function Home() {
 
-
-    const alarms = useSelector(state => state.alarmReducer.alarms)
-
-
-    const [tasks, setTasks] = useState([])
-
-    // useEffect(() => {
-    //     let myTodo = localStorage.getItem('myTodoTasks');
-    //     if (myTodo) {
-    //         setTasks(JSON.parse(myTodo))
-    //     }
-    // }, [])
-
-
-
     const dataAtual = moment().format('DD/MM/YYYY')
     console.log(dataAtual)
 
-    const [openModalEditor, setOpenModal] = useState(false)
     const [openModalEditor2, setOpenModal2] = useState(false)
+
+
 
 
     return (
@@ -47,18 +29,7 @@ function Home() {
                     <DataHoje>{dataAtual}</DataHoje>
                 </DivPrincipal>
 
-
-                {/* <TaskContainer tasks={tasks} setTasks={setTasks} />
-                <div className={`box-tasks-container`}>
-                    {tasks?.map((task, i) => {
-                        return <Task task={task} tasks={tasks} setTasks={setTasks} index={i} key={i} />
-                    })}
-                </div> */}
-
-
-                <div className="alarm-list-container">
-                    {alarms?.map((alarm, i) => <Alarm key={i} index={i} alarm={alarm} />)}
-                </div>
+                <AlertaFinale/>
 
                 <BotãoCriarTarefa onClick={() => setOpenModal2(true)}>
                     <TextoCriarTarefa>
@@ -67,7 +38,7 @@ function Home() {
                 </BotãoCriarTarefa>
 
 
-                <Modal isOpen={openModalEditor} setModalOpen={() => setOpenModal(!openModalEditor)} />
+
                 <Modal2 isOpen2={openModalEditor2} setModalOpen2={() => setOpenModal2(!openModalEditor2)} />
 
 
@@ -85,7 +56,6 @@ function Home() {
 
 
 export default Home;
-
 
 
 
@@ -160,18 +130,18 @@ const TextoCriarTarefa = styled.button`
 `
 
 // const DivFunção = styled.div`
-    // background-color:gray;
-    // display:flex;
-    // position:relative;
-    // justify-content: center;
-    // margin-left:10vw;
-    // margin-top: 50px;
-    // width: 50vw;
-    // height: 30vh;
-    // border-radius: 50px;
-    // filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    // stroke-width: 1px;
-    // stroke: #000;
+// background-color:gray;
+// display:flex;
+// position:relative;
+// justify-content: center;
+// margin-left:10vw;
+// margin-top: 50px;
+// width: 50vw;
+// height: 30vh;
+// border-radius: 50px;
+// filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+// stroke-width: 1px;
+// stroke: #000;
 // `
 
 

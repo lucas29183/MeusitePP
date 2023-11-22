@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Task from '../Task'
-import './TaskContainer.css'
 import styled from "styled-components";
 
 
